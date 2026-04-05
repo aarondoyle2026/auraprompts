@@ -271,22 +271,23 @@ border-radius: 16px; padding: 1.25rem;
 /* ── FAQ ── */
 .faq-list { display: flex; flex-direction: column; gap: 0.75rem; }
 .faq-item {
-background: #160d2e; border: 1px solid rgba(124,58,237,0.25); border-radius: 14px; overflow: hidden;
+background: #160d2e; border: 1px solid rgba(124,58,237,0.25); border-radius: 14px;
 }
 .faq-q {
 width: 100%; background: none; border: none; color: #fff;
 font-family: ‘Syne’, sans-serif; font-weight: 600; font-size: 0.9rem;
 padding: 1rem 1.25rem; text-align: left; cursor: pointer;
 display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;
+-webkit-appearance: none;
 }
-.faq-q .arrow { font-size: 0.7rem; color: #8b7aa8; transition: transform 0.3s; flex-shrink: 0; }
+.faq-q .arrow { font-size: 0.7rem; color: #8b7aa8; transition: transform 0.3s; flex-shrink: 0; display: inline-block; }
 .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
 .faq-a {
-max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
-font-size: 0.85rem; color: #8b7aa8; line-height: 1.6;
-padding: 0 1.25rem;
+display: none;
+font-size: 0.85rem; color: #e2d9f3; line-height: 1.6;
+padding: 0 1.25rem 1rem 1.25rem;
 }
-.faq-item.open .faq-a { max-height: 200px; padding-bottom: 1rem; }
+.faq-item.open .faq-a { display: block; }
 
 /* ── CTA BANNER ── */
 .cta-banner {
@@ -662,26 +663,27 @@ margin-bottom: 0.5rem;
     <a href="#bundles">All Bundles</a>
     <a href="#why">Why Us</a>
     <a href="#faq">FAQ</a>
-    <a href="mailto:moriartyaaron@gmail.com">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#1b767469727a696f627a7a6974755b7c767a727735787476">Contact</a>
   </div>
   <div class="footer-copy">© 2025 AuraPrompts. All rights reserved.</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
 // FAQ toggle
 function toggleFaq(btn) {
 var item = btn.parentElement;
-var isOpen = item.classList.contains(‘open’);
-// Close all first
+if (item.classList.contains(‘open’)) {
+item.classList.remove(‘open’);
+} else {
 var allItems = document.querySelectorAll(’.faq-item’);
-allItems.forEach(function(el) { el.classList.remove(‘open’); });
-// Open clicked one if it was closed
-if (!isOpen) { item.classList.add(‘open’); }
+for (var i = 0; i < allItems.length; i++) {
+allItems[i].classList.remove(‘open’);
+}
+item.classList.add(‘open’);
+}
 }
 
 // Scroll reveal
 var reveals = document.querySelectorAll(’.reveal’);
-var observer = new IntersectionObserver(function(entries) {
-entries.forEach(function(e) {
-if (e.isIntersecting) { e.target.classList.add(‘visible’); observer.unobserve(e.target); }
+var observer = new IntersectionObserv
