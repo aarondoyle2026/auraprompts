@@ -662,7 +662,7 @@ margin-bottom: 0.5rem;
     <a href="#bundles">All Bundles</a>
     <a href="#why">Why Us</a>
     <a href="#faq">FAQ</a>
-    <a href="/cdn-cgi/l/email-protection#7d15181111123d1c080f1c0d0f12100d090e531e1210">Contact</a>
+    <a href="mailto:moriartyaaron@gmail.com">Contact</a>
   </div>
   <div class="footer-copy">© 2025 AuraPrompts. All rights reserved.</div>
 </footer>
@@ -672,7 +672,12 @@ margin-bottom: 0.5rem;
 // FAQ toggle
 function toggleFaq(btn) {
 var item = btn.parentElement;
-item.classList.toggle(‘open’);
+var isOpen = item.classList.contains(‘open’);
+// Close all first
+var allItems = document.querySelectorAll(’.faq-item’);
+allItems.forEach(function(el) { el.classList.remove(‘open’); });
+// Open clicked one if it was closed
+if (!isOpen) { item.classList.add(‘open’); }
 }
 
 // Scroll reveal
